@@ -210,28 +210,28 @@ export default {
         this.handleError(error);
       }
     },
-    // async deleteTraining(id) {
-    //   try {
-    //     const response = await fetch(`${API_URL}/${id}`, {
-    //       method: "DELETE",
-    //       headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //       },
-    //       credentials: "include",
-    //     });
-    //     if (!response.ok) {
-    //       const errorData = await response.json().catch(() => null);
-    //       throw new Error(
-    //         errorData?.message || `Server error: ${response.status}`
-    //       );
-    //     }
+    async deleteTraining(id) {
+      try {
+        const response = await fetch(`${API_URL}/${id}`, {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null);
+          throw new Error(
+            errorData?.message || `Server error: ${response.status}`
+          );
+        }
 
-    //     this.fetchTrainings();
-    //   } catch (error) {
-    //     this.handleError(error);
-    //   }
-    // },
+        this.fetchTrainings();
+      } catch (error) {
+        this.handleError(error);
+      }
+    },
     handleError(error) {
       if (error.name === "TypeError" && error.message === "Failed to fetch") {
         this.error =
